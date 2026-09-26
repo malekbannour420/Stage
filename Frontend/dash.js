@@ -30,11 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       blogs.forEach(blog => {
+        const date = new Date(blog.createdAt).toLocaleDateString("fr-FR");
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td><strong>${blog.title}</strong></td>
-          <td>${blog.date}</td>
-          <td><button class="btn btn-danger" data-id="${blog.id}">Supprimer</button></td>
+          <td><a href="blog-details.html?id=${blog._id}"><strong>${blog.title}</strong></a></td>
+          <td>${date}</td>
+          <td><button class="btn btn-danger" data-id="${blog._id}">Supprimer</button></td>
         `;
         tableBody.appendChild(row);
       });

@@ -1,5 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const connectDB = require("./utils/db");
 
 const authRoutes = require("./routes/auth");
 const blogRoutes = require("./routes/blogs");
@@ -17,6 +19,8 @@ app.get("/", (req, res) => {
   res.send("API Liona en ligne ✅");
 });
 
-app.listen(PORT, () => {
-  console.log(`Serveur Liona démarré sur http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Serveur Liona démarré sur http://localhost:${PORT}`);
+  });
 });

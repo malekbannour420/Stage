@@ -14,11 +14,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     grid.innerHTML = "";
     blogs.forEach(blog => {
-      const card = document.createElement("article");
+      const date = new Date(blog.createdAt).toLocaleDateString("fr-FR");
+      const card = document.createElement("a");
       card.className = "card";
+      card.href = `blog-details.html?id=${blog._id}`;
+      card.style.textDecoration = "none";
+      card.style.display = "block";
       card.innerHTML = `
         <h3>${escapeHtml(blog.title)}</h3>
-        <div class="card-date">${escapeHtml(blog.date)}</div>
+        <div class="card-date">${escapeHtml(date)}</div>
         <p>${escapeHtml(blog.content).slice(0, 140)}${blog.content.length > 140 ? "…" : ""}</p>
       `;
       grid.appendChild(card);

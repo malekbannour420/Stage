@@ -1,27 +1,26 @@
-const fs = require("fs");
-const path = require("path");
+const mongoose = require("mongoose");
+const dns = require("dns");
 
-const DATA_DIR = path.join(__dirname, "..", "data");
+// Certains réseaux Wi-Fi/routeurs bloquent ou ne supportent pas les requêtes DNS
+// de type SRV (nécessaires pour "mongodb+srv://"). On force l'utilisation du
+// DNS public de Google pour contourner ce problème.
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
-function filePath(name) {
-  return path.join(DATA_DIR, `${name}.json`);
+async function connectDB() {
+  const uri = process.env.MONGO_URI;
+
+  if (!uri) {
+    console.error("❌ MONGO_URI manquant dans le fichier .env");
+    process.exit(1);
+  }
+
+  try {
+    await mongoose.connect(uri);
+    console.log("✅ Connecté à MongoDB");
+  } catch (err) {
+    console.error("❌ Échec de connexion à MongoDB :", err.message);
+    process.exit(1);
+  }
 }
 
-function ensureFile(name) {
-  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-  const file = filePath(name);
-  if (!fs.existsSync(file)) fs.writeFileSync(file, "[]", "utf-8");
-}
-
-function readData(name) {
-  ensureFile(name);
-  const raw = fs.readFileSync(filePath(name), "utf-8");
-  return JSON.parse(raw || "[]");
-}
-
-function writeData(name, data) {
-  ensureFile(name);
-  fs.writeFileSync(filePath(name), JSON.stringify(data, null, 2), "utf-8");
-}
-
-module.exports = { readData, writeData };
+module.exports = connectDB;

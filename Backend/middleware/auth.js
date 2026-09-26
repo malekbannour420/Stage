@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = process.env.JWT_SECRET || "liona-secret-dev-key";
+// ⚠️ En production, définissez JWT_SECRET dans le fichier .env (ne jamais committer .env)
 
 function requireAuth(req, res, next) {
   const header = req.headers.authorization;
