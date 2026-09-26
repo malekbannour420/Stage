@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer un Article | Liona</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="dash.html" class="logo">Liona</a>
+    <nav><a href="dash.html">Tableau de bord</a></nav>
+  </header>
+
+  <main>
+    <div class="form-card" style="max-width: 600px;">
+      <h2>Nouveau Blog</h2>
+      <p class="subtitle">Partagez votre prochaine histoire.</p>
+      <form id="createBlogForm" novalidate>
+        <div class="form-group">
+          <label for="title">Titre de l'article</label>
+          <input type="text" id="title" placeholder="Entrez un titre captivant...">
+          <span class="error-msg" id="titleError">Le titre doit comporter au moins 3 caractères.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="content">Contenu de l'article</label>
+          <textarea id="content" rows="7" placeholder="Rédigez votre histoire..."></textarea>
+          <span class="error-msg" id="contentError">Le contenu doit comporter au moins 10 caractères.</span>
+        </div>
+
+        <button type="submit" class="btn btn-full">Publier l'Article</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>&copy; 2026 Liona. Tous droits réservés.</footer>
+
+  <script src="toast.js"></script>
+  <script src="create-blog.js"></script>
+</body>
+</html>

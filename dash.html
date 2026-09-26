@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Liona</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">Liona</a>
+    <button id="logoutBtn" class="btn btn-danger">Déconnexion</button>
+  </header>
+
+  <main class="container">
+    <div class="container-header">
+      <h2>Mes Articles</h2>
+      <a href="create-blog.html" class="btn">+ Nouveau Blog</a>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="articlesTable">
+        <!-- Rempli dynamiquement via dash.js -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>&copy; 2026 Liona. Tous droits réservés.</footer>
+
+  <script src="toast.js"></script>
+  <script src="dash.js"></script>
+</body>
+</html>
