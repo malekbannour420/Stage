@@ -1,5 +1,4 @@
-// toast.js — notification en haut de page (remplace alert())
-// À inclure AVANT les autres scripts de page (ex: <script src="toast.js"></script>)
+
 function showToast(message, type = "success", duration = 2500) {
   let toast = document.getElementById("app-toast");
   if (!toast) {
